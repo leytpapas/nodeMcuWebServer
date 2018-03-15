@@ -1,14 +1,16 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
+#include <ESP8266mDNS.h>
 #include <FS.h>
 #include "data.h"
 #include <ArduinoJson.h>
 
 
-const char* ssid = "*****";
-const char* password = "******";
+const char* ssid = "Papadospito";
+const char* password = "yopapado";
 
 int relay = D4;
+String ipaddr = "***.***.***.***";
 
 boolean state = false;
 ESP8266WebServer server(80);
@@ -17,13 +19,17 @@ ESP8266WebServer server(80);
 IPAddress ip(192, 168, 1, 250); //Requested static IP address for the ESP
 IPAddress router(192, 168, 1, 1); // IP address for the Wifi router
 IPAddress netmask(255, 255, 255, 0);
+IPAddress dns(192, 168, 1, 250);
 
 void setup() {
   pinMode(relay, OUTPUT);
   digitalWrite(relay, LOW);
   Serial.begin(115200);
+  Serial.print("MAC: ");
+  Serial.println(WiFi.macAddress());
 
-  WiFi.hostname("Outlet"); //The displayed name on the routers tables
+  WiFi.hostname("Test"); //set up a hostname
+  
   WiFi.disconnect();
 
   WiFi.mode(WIFI_STA);
@@ -47,6 +53,7 @@ void setup() {
   Serial.println("WiFi connected");
   Serial.print("Use this URL to connect: ");
   Serial.print("http://");
+  ipaddr = String(WiFi.localIP());
   Serial.print(WiFi.localIP());
   Serial.println("/");
 
@@ -132,4 +139,8 @@ String getContentType(String filename) {
 
 void loop() {
   server.handleClient();
+  if (!ipaddr.equals(String(WiFi.localIP()))) {
+    Serial.println(WiFi.localIP());
+    ipaddr = String(WiFi.localIP());
+  }
 }
