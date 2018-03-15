@@ -72,6 +72,7 @@ int relay = D4;
 ### Future Work 
 
 - [x] Make static IP work or more prefferable reach devices using hostname.
+
 	Uncomment this line for listening to this IP. Hostname is enabled by default.
 ```
 	//#define STATICIP
