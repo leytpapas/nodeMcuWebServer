@@ -73,10 +73,11 @@ int relay = D4;
 
 - [x] Make static IP work or more prefferable reach devices using hostname.
 
-	Uncomment this line for listening to this IP. Hostname is enabled by default.
+	Uncomment the following line to make nodemcu board listen to this IP. Hostname is enabled by default.
 ```
 	//#define STATICIP
 ```
+
 - [ ] Set a logic where you can connect via Wifi to the device and change SSID and password(instead of having them 'hardcoded'). Probably I have find a way to trigger a reboot of the device using code.
 
 
