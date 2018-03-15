@@ -32,12 +32,11 @@ A simple web server with a simple switch for home automation using Wifi. The ser
 
 * Result: a way to control every device you want just by plugging it to the power using this setup.
 
-![outlet pic](https://github.com/leytpapas/nodeMcuWebServer/blob/master/images/priza4.jpg)
+![outlet pic](images/priza4.jpg)
 
 
 Now, go make an army of these but dont forget to note each device's hostname.
 
-![outlet pic]({{site.url}}nodeMcuWebServer/images/priza4.jpg)
 
 ### How to use
 
