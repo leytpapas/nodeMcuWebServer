@@ -1,4 +1,4 @@
-# nodeMcu WebServer
+# [nodeMcu WebServer](https://leytpapas.github.io/nodeMcuWebServer/)
 
 A simple web server with a simple switch for home automation using Wifi. The server also accepts json requests for minimum communication and quicker response.
 
@@ -71,9 +71,9 @@ int relay = D4;
 
 ### Future Work 
 
-* Make static IP work or more prefferable reach devices using hostname.
+- [x] Make static IP work or more prefferable reach devices using hostname.
 
-* Set a logic where you can connect via Wifi to the device and change SSID and password(instead of having them 'hardcoded'). Probably I have find a way to trigger a reboot of the device using code.
+- [ ] Set a logic where you can connect via Wifi to the device and change SSID and password(instead of having them 'hardcoded'). Probably I have find a way to trigger a reboot of the device using code.
 
 
 
