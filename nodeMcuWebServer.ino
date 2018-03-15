@@ -6,8 +6,8 @@
 #include <ArduinoJson.h>
 
 
-const char* ssid = "Papadospito";
-const char* password = "yopapado";
+const char* ssid = "your ssid here";
+const char* password = "your password here";
 
 int relay = D4;
 String ipaddr = "***.***.***.***";

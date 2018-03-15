@@ -43,9 +43,9 @@ Now, go make an army of these but dont forget to note each device's hostname.
 * Enter your Wifi's ssid and password so that the webserver can be reached
 
 ```
-const char* ssid = "******";
+const char* ssid = "your ssid here";
 
-const char* password = "******";
+const char* password = "your password here";
 ```
 
 * Enter the pin you connected the relay to
@@ -60,7 +60,7 @@ int relay = D4;
 * Go to your brower and hit that IP (make sure you are connected to the same network or have a way of communication with that network). BOOM you are ready to go. 
 
 
-# Suggestions
+### Suggestions
 
   * I use [this](https://play.google.com/store/apps/details?id=ch.rmy.android.http_shortcuts) app which sets up widgets on the phone/tablet for everyday use. An example of shorcuts is on the httpRequestShortcuts folder, you can import them and then edit them. Just changing the IP address should be ok, but depending on the way the relay is connected 'on' and 'off' could be reverted with each other.
   A drawback of this method is that each time the devices get a new IP address you also have to edit the shortcuts at the app. Even though I tried to reach the device using the assigned hostname it failed, but I believe there is something wrong with my router.
