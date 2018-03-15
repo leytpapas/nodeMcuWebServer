@@ -12,11 +12,11 @@ A simple web server with a simple switch for home automation using Wifi. The ser
 
 * NodeMCU ESP8266  Board
 
-![NodeMCU](https://github.com/leytpapas/nodeMcuWebServer/blob/master/images/nodemcu.jpg)
+![NodeMCU](images/nodemcu.jpg)
 
 * 3V relay
 
-![3V relay](https://github.com/leytpapas/nodeMcuWebServer/blob/master/images/relay.jpg)
+![3V relay](images/relay.jpg)
 
 
 * 5V AC/DC Converter Switch Power Supply Module
@@ -24,11 +24,11 @@ A simple web server with a simple switch for home automation using Wifi. The ser
 
 * Old box to fit setup for easy use + some rubber to put among the boards for isolation (isn't shown in the pictures). It gives power to AC/DC converter which powers the nodemcu board and the relay controls whether it will also give power to the device plugged in it
 
-![outlet pic](https://github.com/leytpapas/nodeMcuWebServer/blob/master/images/priza1.jpg)
+![outlet pic](images/priza1.jpg)
 
-![outlet pic](https://github.com/leytpapas/nodeMcuWebServer/blob/master/images/priza3.jpg)
+![outlet pic](images/priza3.jpg)
 
-![outlet pic](https://github.com/leytpapas/nodeMcuWebServer/blob/master/images/priza2.jpg)
+![outlet pic](images/priza2.jpg)
 
 * Result: a way to control every device you want just by plugging it to the power using this setup.
 
