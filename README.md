@@ -60,9 +60,12 @@ int relay = D4;
 * Go to your brower and hit that IP (make sure you are connected to the same network or have a way of communication with that network). BOOM you are ready to go. 
 
 
-* Suggestion: I use [this](https://play.google.com/store/apps/details?id=ch.rmy.android.http_shortcuts) app which sets up widgets on the phone/tablet for everyday use. An example of shorcuts is on the httpRequestShortcuts folder, you can import them and then edit them. Just changing the IP address should be ok, but depending on the way the relay is connected 'on' and 'off' could be reverted with each other.
-A drawback of this method is that each time the devices get a new IP address you also have to edit the shortcuts at the app. Even though I tried to reach the device using the assigned hostname it failed, but I believe there is something wrong with my router.
-Of course, you can set a static IP for each device so that you don't have to deal with the above problem in every reset. In my case, the devices were reachable but they were missing from the routers tables so I reverted to the dynamic IP.
+* Suggestions:
+  * I use [this](https://play.google.com/store/apps/details?id=ch.rmy.android.http_shortcuts) app which sets up widgets on the phone/tablet for everyday use. An example of shorcuts is on the httpRequestShortcuts folder, you can import them and then edit them. Just changing the IP address should be ok, but depending on the way the relay is connected 'on' and 'off' could be reverted with each other.
+  A drawback of this method is that each time the devices get a new IP address you also have to edit the shortcuts at the app. Even though I tried to reach the device using the assigned hostname it failed, but I believe there is something wrong with my router.
+  Of course, you can set a static IP for each device so that you don't have to deal with the above problem in every reset. In my case, the devices were reachable but they were missing from the routers tables so I reverted to the dynamic IP.
+  * Portforwarding would let you have access to your setup from anywhere in the world. Just make sure you have a static IP address on your home network or have another way of knowing its IP address(etc. dydns or send it to yourself everytime it changes)
+
 
 ### Future Work 
 
