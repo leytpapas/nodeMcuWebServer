@@ -2,13 +2,13 @@
 
 A simple web server with a simple switch for home automation using Wifi. The server also accepts json requests for minimum communication and quicker response.
 
-# Software
+### Software
 
 * Arduino IDE with the appropriate setting to connect with nodemcu board
 * ESP8266Wi-Fi library
 
 
-# Hardware
+### Hardware
 
 * NodeMCU ESP8266  Board
 
@@ -22,7 +22,7 @@ A simple web server with a simple switch for home automation using Wifi. The ser
 * 5V AC/DC Converter Switch Power Supply Module
 
 
-* Old box to fit setup for easy use + some rubber to put among the boards for isolation (isn't shown in these pictures)
+* Old box to fit setup for easy use + some rubber to put among the boards for isolation (isn't shown in the pictures)
 
 ![](https://github.com/leytpapas/nodeMcuWebServer/blob/master/images/priza1.jpg)
 
@@ -38,7 +38,7 @@ A simple web server with a simple switch for home automation using Wifi. The ser
 Now, go make an army of these but dont forget to note each device's hostname.
 
 
-# How to use
+### How to use
 
 * Enter your Wifi's ssid and password so that the webserver can be reached
 
@@ -64,7 +64,7 @@ int relay = D4;
 A drawback of this method is that each time the devices get a new IP address you also have to edit the shortcuts at the app. Even though I tried to reach the device using the assigned hostname it failed, but I believe there is something wrong with my router.
 Of course, you can set a static IP for each device so that you don't have to deal with the above problem in every reset. In my case, the devices were reachable but they were missing from the routers tables so I reverted to the dynamic IP.
 
-# Future Work 
+### Future Work 
 
 * Make static IP work or more prefferable reach devices using hostname.
 
@@ -72,11 +72,16 @@ Of course, you can set a static IP for each device so that you don't have to dea
 
 
 
-# Credits
+### Credits
 
 Thanks to [spacehuhn](https://github.com/spacehuhn/) for the [tools](https://github.com/spacehuhn/esp8266_deauther/blob/master/web_server/) to convert files to PROGMEM
 
 
 
 
-Any suggestions are welcome
+
+
+
+
+
+#####Any suggestions are welcome
