@@ -24,20 +24,20 @@ A simple web server with a simple switch for home automation using Wifi. The ser
 
 * Old box to fit setup for easy use + some rubber to put among the boards for isolation (isn't shown in the pictures). It gives power to AC/DC converter which powers the nodemcu board and the relay controls whether it will also give power to the device plugged in it
 
-![](https://github.com/leytpapas/nodeMcuWebServer/blob/master/images/priza1.jpg)
+![outlet pic](https://github.com/leytpapas/nodeMcuWebServer/blob/master/images/priza1.jpg)
 
-![](https://github.com/leytpapas/nodeMcuWebServer/blob/master/images/priza3.jpg)
+![outlet pic](https://github.com/leytpapas/nodeMcuWebServer/blob/master/images/priza3.jpg)
 
-![](https://github.com/leytpapas/nodeMcuWebServer/blob/master/images/priza2.jpg)
+![outlet pic](https://github.com/leytpapas/nodeMcuWebServer/blob/master/images/priza2.jpg)
 
 * Result: a way to control every device you want just by plugging it to the power using this setup.
 
-![](https://github.com/leytpapas/nodeMcuWebServer/blob/master/images/priza4.jpg)
+![outlet pic](https://github.com/leytpapas/nodeMcuWebServer/blob/master/images/priza4.jpg)
 
 
 Now, go make an army of these but dont forget to note each device's hostname.
 
-![LoL]({{site.url}}{{site.baseurl}}images/priza4.jpg)
+![outlet pic]({{site.url}}{{site.baseurl}}images/priza4.jpg)
 
 ### How to use
 
