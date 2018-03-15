@@ -22,7 +22,7 @@ A simple web server with a simple switch for home automation using Wifi. The ser
 * 5V AC/DC Converter Switch Power Supply Module
 
 
-* Old box to fit setup for easy use + some rubber to put among the boards for isolation (isn't shown in the pictures)
+* Old box to fit setup for easy use + some rubber to put among the boards for isolation (isn't shown in the pictures). It gives power to AC/DC converter which powers the nodemcu board and the relay controls whether it will also give power to the device plugged in it
 
 ![](https://github.com/leytpapas/nodeMcuWebServer/blob/master/images/priza1.jpg)
 
