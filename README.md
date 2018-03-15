@@ -22,7 +22,7 @@ A simple web server with a simple switch for home automation using Wifi. The ser
 * 5V AC/DC Converter Switch Power Supply Module
 
 
-* Old hardware to fit setup for easy use + some rubber to put among the boards for isolation (isn't shown in the pictures)
+* Old box to fit setup for easy use + some rubber to put among the boards for isolation (isn't shown in these pictures)
 
 ![](https://github.com/leytpapas/nodeMcuWebServer/blob/master/images/priza1.jpg)
 
@@ -30,9 +30,12 @@ A simple web server with a simple switch for home automation using Wifi. The ser
 
 ![](https://github.com/leytpapas/nodeMcuWebServer/blob/master/images/priza2.jpg)
 
-* Result: a way to control every device you want just by plugging it to the power using this setup
+* Result: a way to control every device you want just by plugging it to the power using this setup.
 
 ![](https://github.com/leytpapas/nodeMcuWebServer/blob/master/images/priza4.jpg)
+
+
+Now, go make an army of these but dont forget to note each device's hostname.
 
 
 # How to use
