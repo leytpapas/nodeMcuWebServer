@@ -11,6 +11,7 @@ outputfile="$(dirname "$(pwd)")/progMEMData.h"
 
 rm $outputfile
 
+<<<<<<< HEAD
 function miniEsc {
     file=$1
     var=$(cat $file)
@@ -31,6 +32,16 @@ function miniEsc {
     (echo $var) > /tmp/converter.temp
 
     
+=======
+function minify_html_css {
+    file=$1
+    curl -X POST -s --data-urlencode "input@$file" http://html-minifier.com/raw > /tmp/converter.temp
+}
+
+function minify_js {
+    file=$1
+    curl -X POST -s --data-urlencode "input@$file" https://javascript-minifier.com/raw > /tmp/converter.temp
+>>>>>>> 3eeefce814e5c6cfd3033fcbb88c66475ee768c6
 }
 
 function ascii2hexCstyle {
@@ -54,6 +65,7 @@ for file in $file_list; do
   echo "Processing: $file"
   if [[ "$file" == *.js ]]; then
     echo "-> JS minifier"
+<<<<<<< HEAD
     miniEsc $file
     #sleep 10
     ascii2hexCstyle $file >> $outputfile
@@ -61,11 +73,22 @@ for file in $file_list; do
     echo "-> HTML and CSS minifier"
     miniEsc $file
     #sleep 10
+=======
+    minify_js $file
+    ascii2hexCstyle $file >> $outputfile
+  elif [[ "$file" == *.html ]] || [[ "$file" == *.css ]]; then
+    echo "-> HTML and CSS minifier"
+    minify_html_css $file
+>>>>>>> 3eeefce814e5c6cfd3033fcbb88c66475ee768c6
     ascii2hexCstyle $file >> $outputfile
   else
     echo "-> without minifier"
     cat $file > /tmp/converter.temp
     ascii2hexCstyle $file >> $outputfile
   fi
+<<<<<<< HEAD
   #sleep 1
+=======
+  sleep 1
+>>>>>>> 3eeefce814e5c6cfd3033fcbb88c66475ee768c6
 done

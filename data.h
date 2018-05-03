@@ -34,13 +34,17 @@ void sendToBuffer(String str) {
 }
 
 void sendHeader(int code, String type, size_t _size) {
+<<<<<<< HEAD
   Serial.println(_size);
+=======
+>>>>>>> 3eeefce814e5c6cfd3033fcbb88c66475ee768c6
   server.setContentLength(_size);
   server.send(code, type, "");
 }
 
 void sendFile(int code, String type, const char* adr, size_t len) {
   sendHeader(code, type, len);
+<<<<<<< HEAD
   
     int runs = len/bufSize;
     if(len%bufSize > 0) runs++;
@@ -58,3 +62,22 @@ void sendFile(int code, String type, const char* adr, size_t len) {
   sendBuffer();
 }
 #endif
+=======
+  /*
+    int runs = len/bufSize;
+    if(len%bufSize > 0) runs++;
+    for (int i = 0; i < runs; i++){
+    int _len = bufSize;
+    for(int h=0;h<bufSize;h++){
+      if(h+i*bufSize >= len){
+        _len = h;
+        break;
+      }
+      else data_websiteBuffer[h] = (char)pgm_read_byte_near(adr + h+i*bufSize);
+    }
+    }*/
+  server.sendContent_P(adr, len);
+  sendBuffer();
+}
+#endif
+>>>>>>> 3eeefce814e5c6cfd3033fcbb88c66475ee768c6
