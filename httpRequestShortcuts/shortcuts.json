@@ -1,0 +1,117 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "layoutType": "linear_list",
+      "name": "Shortcuts",
+      "shortcuts": [
+        {
+          "acceptAllCertificates": false,
+          "authentication": "none",
+          "bodyContent": "{\"checkStatus\":false,\"command\":false}",
+          "delay": 0,
+          "description": "",
+          "feedback": "simple_response",
+          "headers": [
+            {
+              "id": "4d0d7aca-2c5f-4fb8-b58b-badbd6d3d9f9",
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "iconName": "black_power_2",
+          "id": 1,
+          "launcherShortcut": false,
+          "method": "POST",
+          "name": "maska-off",
+          "parameters": [],
+          "password": "",
+          "retryPolicy": "none",
+          "timeout": 30000,
+          "url": "http://192.168.1.2/switch.json",
+          "username": ""
+        },
+        {
+          "acceptAllCertificates": false,
+          "authentication": "none",
+          "bodyContent": "{\"checkStatus\":false,\"command\":true}",
+          "delay": 0,
+          "description": "",
+          "feedback": "simple_response",
+          "headers": [
+            {
+              "id": "49c3c32e-479e-476b-91fa-474a462ebd1c",
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "iconName": "black_power_2",
+          "id": 2,
+          "launcherShortcut": false,
+          "method": "POST",
+          "name": "maska-on",
+          "parameters": [],
+          "password": "",
+          "retryPolicy": "none",
+          "timeout": 10000,
+          "url": "http://192.168.1.2/switch.json",
+          "username": ""
+        },
+        {
+          "acceptAllCertificates": false,
+          "authentication": "none",
+          "bodyContent": "{\"checkStatus\":false,\"command\":true}",
+          "delay": 0,
+          "description": "",
+          "feedback": "simple_response",
+          "headers": [
+            {
+              "id": "c1e97b6e-d74c-4672-8f06-6c4433c789ca",
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "iconName": "black_outlet_plug",
+          "id": 3,
+          "launcherShortcut": false,
+          "method": "POST",
+          "name": "mpriza-on",
+          "parameters": [],
+          "password": "",
+          "retryPolicy": "none",
+          "timeout": 10000,
+          "url": "http://192.168.1.3/switch.json",
+          "username": ""
+        },
+        {
+          "acceptAllCertificates": false,
+          "authentication": "none",
+          "bodyContent": "{\"checkStatus\":false,\"command\":false}",
+          "delay": 0,
+          "description": "",
+          "feedback": "simple_response",
+          "headers": [
+            {
+              "id": "191bbc17-c9e1-4327-bd02-6da846bd13b6",
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "iconName": "black_outlet_plug",
+          "id": 4,
+          "launcherShortcut": false,
+          "method": "POST",
+          "name": "mpriza-off",
+          "parameters": [],
+          "password": "",
+          "retryPolicy": "none",
+          "timeout": 10000,
+          "url": "http://192.168.1.3/switch.json",
+          "username": ""
+        }
+      ]
+    }
+  ],
+  "variables": [],
+  "version": 15
+}
