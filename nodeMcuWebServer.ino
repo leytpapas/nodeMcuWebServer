@@ -10,6 +10,9 @@
 
 int relay = D4;
 
+const char* ssid = "your ssid here";
+const char* password = "your password here";
+
 boolean state = false;
 ESP8266WebServer server(80);
 
@@ -182,7 +185,7 @@ void accessPoint() {
     Serial.print("Soft-AP IP address = ");
     Serial.println(WiFi.softAPIP());
 
-    WiFi.softAP("node");
+    WiFi.softAP(ssid, password);
 }
 
 bool connectTo(String ssid,String password) {
