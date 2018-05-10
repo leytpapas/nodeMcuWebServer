@@ -29,7 +29,7 @@
 	"pass": "whatever2",
 }
 {
-	"_comment": "add request return. ",
+	"_comment": "add request return.",
 	"req": "add",
 	"status": "success/failed",
 	"error":""
@@ -40,7 +40,7 @@
 	"req": "network_status",
 }
 {
-	"_comment": "add request return. ",
+	"_comment": "add request return.",
 	"req": "network_status",
 	"status": "online/offline",
 	"error":""
