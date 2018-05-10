@@ -40,7 +40,7 @@ Now, go make an army of these but dont forget to note each device's hostname.
 
 ### How to use
 
-* Fill ssid and password to be broadcasted every time the node can't connect to a network
+* Fill ssid and password to be broadcasted every time the node can't connect to a network.
 
 ```
 const char* ssid = "your ssid here";
@@ -48,13 +48,13 @@ const char* ssid = "your ssid here";
 const char* password = "your password here";
 ```
 
-Note the IP Address of the webserver when it also serves as 'access point'
+Note the IP Address of the webserver when it also serves as 'access point'.
 
 ```
 IPAddress  apIP(192,168,3,4);
 ```
 
-* Enter the pin you connected the relay to
+* Enter the pin you connected the relay to.
 
 ```
 int relay = D4;
@@ -77,7 +77,7 @@ int relay = D4;
   Of course, you can set a static IP for each device so that you don't have to deal with the above problem in every reset. In my case, the devices were reachable but they were missing from the routers tables so I reverted to the dynamic IP.
 
   * Another work around is to bind nodemcu's mac address to a specific IP from inside the router. With this setting router will allocate this IP for this specific this device so it gets the same IP everytime it's connected.
-  
+
   * Portforwarding would let you have access to your setup from anywhere in the world. Just make sure you have a static IP address on your home network or have another way of knowing its IP address(etc. dydns or send it to yourself via mail or your favorite messenger everytime it changes)
 
 
