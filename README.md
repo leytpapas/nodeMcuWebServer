@@ -38,7 +38,7 @@ A simple web server with a simple switch for home automation using Wifi. The ser
 Now, go make an army of these but dont forget to note each device's hostname.
 
 
-### How to use
+### How to use (***Needs update***)
 
 * Fill ssid and password to be broadcasted every time the node can't connect to a network.
 
