@@ -8,15 +8,79 @@
 		    font-size: 8px;
 		    background: #1E1E20;
 		    text-align: center;
+		    position: absolute;
+		    /*top:0;
+		    bottom:0;
+		    left:0;
+		    right:0;*/
+		    overflow: auto;
 		}
-		.input[type=text] {
-		  border: none;        /* Remove default borders */
-		  padding: 4px 8px;
-		  border-radius: 12px; /* Sadly outline does not round! therefore...*/
+		.input{
+			border: none;        /* Remove default borders */
+			margin-bottom: 6px;
+			padding: 4px 8px;
+			top: 0;
+			left: 0;
+		}
+		.checkbox2{
+			color: #778899;
+		    font-family: arial, verdana, sans-serif;
+		    text-align: center;
+		    text-shadow: 0 0.1em rgba(0, 0, 0, 0.7);
+		    font-size: medium;
+		    margin-top: 1px;
+		    margin-bottom: 2px;
+		    white-space: pre-wrap;
+		}
+		.error-message{
+			color: #FF0000;
+		    font-family: arial, verdana, sans-serif;
+		    text-align: center;
+		    text-shadow: 0 0.1em rgba(0, 0, 0, 0.7);
+		    font-size: large;
+		    margin-top: 1px;
+		    margin-bottom: 2px;
+		    white-space: pre-wrap;
 		}
 		.input[type=text]:focus {
 			outline: none;      /* Remove default outline and use border or box-shadow */
   			box-shadow: 0 0 0 2px orange;
+		}
+		.plus-ap{
+			padding: 8px 8px;
+			margin-bottom: 10px;
+			border-radius: 15px;
+		}
+		.plus-ap:after {
+		    content: 'Edit access point';
+		    bottom: -1.8em;
+		    color: #666;
+		    font-family: arial, verdana, sans-serif;
+		    font-weight: bold;
+		    text-align: center;
+		    text-shadow: 0 0.1em rgba(0, 0, 0, 0.7)
+		    font-size: large;
+		}
+		.plus-net{
+			padding: 8px 8px;
+			margin-bottom:10px;
+			border-radius: 15px;
+		}
+		.plus-net:after {
+		    content: 'Connect to a network';
+		    bottom: -1.8em;
+		    color: #666;
+		    font-family: arial, verdana, sans-serif;
+		    font-weight: bold;
+		    text-align: center;
+		    text-shadow: 0 0.1em rgba(0, 0, 0, 0.7)
+		    font-size: large;
+		}
+		.form{
+			margin-bottom:10px;
+		}
+		.submit_button{
+			margin-top: 2px;
 		}
 		.clock {
 		    display: inline-block;

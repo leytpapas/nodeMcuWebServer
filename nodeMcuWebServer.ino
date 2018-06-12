@@ -10,8 +10,9 @@
 
 int relay = D4;
 
-const char* ssid = "your ssid here";
-const char* password = "your password here";
+const char* nodeHostname = "Switch Node";
+/*const char* ssid = "Node";
+const char* password = "";*/
 
 boolean state = false;
 ESP8266WebServer server(80);
@@ -29,22 +30,18 @@ IPAddress  apIP(192,168,3,4);
 IPAddress  apNetmask(255, 255, 255, 0);
 
 void loadIndexHTML() {
-    Serial.println("loadIndexHTML");
     sendFile (200 , "text/html", data_indexHTML, sizeof(data_indexHTML));
 }
 
 void loadFunctionsJS() {
-    Serial.println("loadFunctionsJS");
     sendFile(200, "application/javascript", data_js_functionsJS, sizeof(data_js_functionsJS));
 }
 void loadStyle() {
-    Serial.println("loadStyle");
     sendFile (200, "text/css", data_styleCSS, sizeof(data_styleCSS));
 }
 
 void switchJS() {
 
-    Serial.println("switchJS");
     StaticJsonBuffer<200> newBuffer;
     JsonObject& root = newBuffer.parseObject(server.arg("plain"));
     Serial.println(server.arg("plain"));
@@ -69,19 +66,35 @@ void switchJS() {
     } else if (req == "network_status") {
         String tmp = (WiFi.status() != WL_CONNECTED)?"offline":"online";
         server.send(200, "text/json", "{\"req\": \"network_status\",\"status\": \""+tmp+"\",\"error\":\"\"}");
-    } else if (req == "add") {
+    } else if (req == "connect") {
         //add known network
         String ssid = root["ssid"];
         String pass = root["pass"];
         File f = SPIFFS.open("/last_connected.txt", "w");
         if(!f) {
             Serial.println("Error opening file");
-            server.send(200, "text/json", "{\"req\": \"add\",\"status\": \"failed\",\"error\":\"Couldnt open or create file.Try again later\"}");
+            server.send(200, "text/json", "{\"req\": \"connect\",\"status\": \"failed\",\"error\":\"Couldnt open or create file.Try again later\"}");
         } else {
             f.println(ssid);
             f.println(pass);
             f.close();
-            server.send(200, "text/json", "{\"req\": \"add\",\"status\": \"success\",\"error\":\"\"}");
+            server.send(200, "text/json", "{\"req\": \"connect\",\"status\": \"success\",\"error\":\"\"}");
+            Serial.println("ESP Restarting now");
+            ESP.restart();
+        }
+    }else if (req == "apconf") {
+        //add known network
+        String ssid = root["ssid"];
+        String pass = root["pass"];
+        File f = SPIFFS.open("/apconfig.txt", "w");
+        if(!f) {
+            Serial.println("Error opening file");
+            server.send(200, "text/json", "{\"req\": \"apconf\",\"status\": \"failed\",\"error\":\"Couldnt open or create file.Try again later\"}");
+        }else {
+            f.println(ssid);
+            f.println(pass);
+            f.close();
+            server.send(200, "text/json", "{\"req\": \"apconf\",\"status\": \"success\",\"error\":\"\"}");
             Serial.println("ESP Restarting now");
             ESP.restart();
         }
@@ -114,12 +127,13 @@ String getContentType(String filename) {
 void setup() {
     pinMode(relay, OUTPUT);
     digitalWrite(relay, LOW);
+    delay(5000);
     Serial.begin(115200);
-    WiFi.hostname("node");
-
+    WiFi.hostname(nodeHostname);
+    Serial.println("Opening SPIFFS.");
     bool result = SPIFFS.begin();
     Serial.println("SPIFFS opened: " + result);
-    File f = SPIFFS.open("/last_connected.txt", "r+");
+    File f = SPIFFS.open("/last_connected.txt", "r");
     if(!f) {
         Serial.println("Last connected file open failed.");
         accessPoint();
@@ -173,6 +187,33 @@ void setup() {
 }
 
 void accessPoint() {
+    
+    String szSSID = "";
+    String szPass = "";
+    File f = SPIFFS.open("/apconfig.txt", "r");
+    if(!f) {
+        Serial.println("apconfig file open failed. Setting default values");
+        szSSID = "Node";
+        szPass = "";
+    } else {
+        szSSID = f.readStringUntil('\n');
+        szSSID.replace("\n","");
+        szSSID.replace("\t","");
+        szSSID.replace("\r","");
+
+        szPass = f.readStringUntil('\n');
+        szPass.replace("\n","");
+        szPass.replace("\t","");
+        szPass.replace("\r","");
+        f.close();
+
+        /*
+        for (int i = 0; i < strlen(szSSID.c_str()); ++i) {
+          Serial.printf("%02x ", szSSID.c_str()[i]);
+        }
+        Serial.println("");*/
+    }
+
     WiFi.disconnect();
     WiFi.mode(WIFI_AP_STA);
     //WiFi.softAPConfig(apIP, apIP, IPAddress(255, 255, 255, 0));   // subnet FF FF FF 00
@@ -180,12 +221,12 @@ void accessPoint() {
     Serial.println(WiFi.softAPConfig(apIP, apGateway, apNetmask) ? "Ready" : "Failed!");
 
     Serial.print("Setting soft-AP ... ");
-    Serial.println(WiFi.softAP("ESPTEST") ? "Ready" : "Failed!");
+    Serial.println(WiFi.softAP(nodeHostname) ? "Ready" : "Failed!");
 
     Serial.print("Soft-AP IP address = ");
     Serial.println(WiFi.softAPIP());
 
-    WiFi.softAP(ssid, password);
+    WiFi.softAP((const char*)szSSID.c_str(),(const char*) szPass.c_str());
 }
 
 bool connectTo(String ssid,String password) {
@@ -194,9 +235,6 @@ bool connectTo(String ssid,String password) {
 
     WiFi.mode(WIFI_STA);
     // Connect to WiFi network
-    Serial.println();
-    Serial.print("Connecting to ");
-    Serial.println(ssid);
 
 #ifdef STATICIP
     WiFi.config(ip, router, netmask);

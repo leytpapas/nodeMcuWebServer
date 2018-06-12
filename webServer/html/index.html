@@ -9,7 +9,7 @@
     <span class="switch">
 		<span class="switch-border1" onclick="switchState()">
 			<span class="switch-border2">
-				<input id="switch1" name="state1" type="checkbox" />
+				<input id="switchin" name="state1" type="checkbox" />
 				<span class="switch-top"></span>
 				<span class="switch-shadow"></span>
 				<span class="switch-handle"></span>
@@ -36,14 +36,24 @@
 		</span>
 	</span>
 	<div>
-		<button id="plus" onclick="addNetworkConnection()">+</button>
-		<span id="input-fields" hidden>
-	    <div id="input-fields-in">
-			<input type="text" id="ssid" name="ssid" placeholder="SSID">
-			<input type="text" id="password" name="Password" placeholder="Password">
+		<button class="plus-net" id="plus-net" onclick="toggle(this,'plus-ap','input-fields-net')">+</button>
+		<div class="form" id="input-fields-net" hidden>
+			<input class="input" type="text" id="ssid-net" name="ssid" placeholder="SSID"><p/>
+			<input class="input" type="password" id="password-net" name="Password" placeholder="Password"><p/>
+			<div class="checkbox2"><input type="checkbox" id="plus-net-pass" onclick="showPass(this,'password-net')"> show password </div>
+			<div class="error-message" id="error-net" hidden></div>
+			<button class="submit_button" onclick="save_net()">Submit</button>
 		</div>
-		<button class="submit_button" onclick="save()">Submit</button>
-	</span>
+	</div>
+	<div>
+		<button class="plus-ap" id="plus-ap" onclick="toggle(this,'plus-net','input-fields-ap')">+</button>
+		<div class="form" id="input-fields-ap" hidden>
+			<input class="input" type="text" id="ssid-ap" name="ssid" placeholder="SSID"><p/>
+			<input class="input" type="password" id="password-ap" name="Password" placeholder="Password"><p/>
+			<div class="checkbox2"><input type="checkbox" id="plus-ap-pass"onclick="showPass(this,'password-ap')"> show password </div>
+			<div class="error-message" id="error-ap" hidden></div>
+			<button class="submit_button" onclick="save_ap()">Submit</button>
+		</div>
 	</div>
 	
 	<script src="js/functions.js"></script>

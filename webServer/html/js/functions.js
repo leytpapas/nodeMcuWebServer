@@ -5,24 +5,33 @@
         }
     };
 
-
-    var checkbox = document.getElementById('switch1');
-    var wrapper = document.getElementById("input-fields");
-    var plus = document.getElementById('plus');
-    var inSSID = document.getElementById('ssid');
-    var inPASS = document.getElementById('password');
-    var bool = true;
+    var checkbox = document.getElementById('switchin');
+    var plus_ap = document.getElementById('plus-ap');
+    var plus_net = document.getElementById('plus-net');
+    var inSSID_ap = document.getElementById('ssid-ap');
+    var inPASS_ap = document.getElementById('password-ap');
+    var inSSID_net = document.getElementById('ssid-net');
+    var inPASS_net = document.getElementById('password-net');
 
     function initApp(){
         
-        document.querySelectorAll("input").forEach(function(elem){ //add listener to all <input>
+        document.querySelectorAll("input.net").forEach(function(elem){ //add listener to all <input class="net">
             elem.addEventListener('keypress',function(e){
                 var key = e.which || e.keyCode;
                 if (key === 13) { // 13 is enter
-                  save();
+                  save_net();
                 }
             });
         });
+        document.querySelectorAll("input.ap").forEach(function(elem){ //add listener to all <input class="ap">
+            elem.addEventListener('keypress',function(e){
+                var key = e.which || e.keyCode;
+                if (key === 13) { // 13 is enter
+                  save_ap();
+                }
+            });
+        });
+        
         
         var data = {
             "req": "network_status"
@@ -38,7 +47,6 @@
                 if (new String(ans.status) == "online") {
                    
                 } else {
-                    wrapper.hidden = false;
                     checkbox.checked = false;
                 }
             }
@@ -61,23 +69,38 @@
         //checkbox.focus();
     }
 
-    function save(){
+    function save_ap(){
         var boole = false;
-        if(inSSID.value==""){
-            inSSID.style.outline = "none";
-            inSSID.style.boxShadow = "0 0 0 2px red";
+        var message = ""
+        if(inSSID_ap.value==""){
+            inSSID_ap.style.outline = "none";
+            inSSID_ap.style.boxShadow = "0 0 0 2px red";
+            message += "SSID cannot be empty.";
             boole=true;
-        }else{
-            inSSID.style.boxShadow = "0 0 0 2px green";
         }
 
-        console.log("save()");
-        if(boole){return;}
+        if(inPASS_ap.value.length!=0 && inPASS_ap.value.length<8){
+            inPASS_ap.style.outline = "none";
+            inPASS_ap.style.boxShadow = "0 0 0 2px red";
+            message +=(message=="")?"":"\n";
+            message += "Password can either have 0 or more than 8 characters.";
+            boole=true;
+        }
+
+        console.log("save_ap()");
+        if(boole){
+            document.getElementById('error-ap').innerHTML = message;
+            document.getElementById('error-ap').hidden = false;
+            return;
+        }
+        inSSID_ap.style.boxShadow = "0 0 0 2px green";
+        inPASS_ap.style.boxShadow = "0 0 0 2px green";
+        document.getElementById('error-ap').hidden = true;
 
         var data = {
-            "req": "add",
-            "ssid": inSSID.value,
-            "pass": inPASS.value
+            "req": "apconf",
+            "ssid": inSSID_ap.value,
+            "pass": inPASS_ap.value
         }
         console.log(data);
         httpGetAsync('POST', 'switch.json', data, function(err, res) {
@@ -89,9 +112,49 @@
         });
     }
 
-    function addNetworkConnection(){
-        wrapper.hidden=!wrapper.hidden;
-        plus.textContent = (plus.textContent=="+")?"-":"+";
+    function save_net(){
+        var boole = false;
+        if(inSSID_net.value==""){
+            inSSID_net.style.outline = "none";
+            inSSID_net.style.boxShadow = "0 0 0 2px red";
+            document.getElementById('error-net').innerHTML = "SSID cannot be empty.";
+            document.getElementById('error-net').hidden = false;
+            boole=true;
+        }else{
+            inSSID_net.style.boxShadow = "0 0 0 2px green";
+        }
+
+        console.log("save_net()");
+        if(boole){return;}
+        document.getElementById('error-net').hidden = true;
+        var data = {
+            "req": "connect",
+            "ssid": inSSID_net.value,
+            "pass": inPASS_net.value
+        }
+        console.log(data);
+        httpGetAsync('POST', 'switch.json', data, function(err, res) {
+            if (err) {
+                console.log('Received error');
+            } else {
+                console.log('Received ~' + JSON.stringify(res)+'~');
+            }
+        });
+    }
+
+    function showPass(checkboxEl,passwordEl){
+        document.getElementById(passwordEl).type =(checkboxEl.checked)?"text":"password";
+    }
+    function toggle(button,otherbutton,wrapper){
+        document.getElementById(wrapper).hidden =! document.getElementById(wrapper).hidden;
+        if(button.textContent=="+"){
+            button.textContent = "-";
+            document.getElementById(otherbutton).hidden = true;
+        }else{
+            button.textContent ="+";
+            document.getElementById(otherbutton).hidden = false;
+        }
+        //button.textContent = (button.textContent=="+")?"-":"+";
     }
 
     function switchState() {

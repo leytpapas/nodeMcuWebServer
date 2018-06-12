@@ -23,14 +23,27 @@
 }
 //////////////////////////////////////////////////////////////////////
 {
-	"_comment": "add request for new network",
-	"req": "add",
+	"_comment": "request for new network",
+	"req": "connect",
 	"ssid": "whatever1",
 	"pass": "whatever2",
 }
 {
-	"_comment": "add request return.",
-	"req": "add",
+	"_comment": "connect request return.",
+	"req": "connect",
+	"status": "success/failed",
+	"error":""
+}
+//////////////////////////////////////////////////////////////////////
+{
+	"_comment": "change broadcasted ssid/password needed.",
+	"req": "apconf",
+	"ssid": "whatever1",
+	"pass": "whatever2",
+}
+{
+	"_comment": "request return.",
+	"req": "apconf",
 	"status": "success/failed",
 	"error":""
 }
@@ -40,7 +53,7 @@
 	"req": "network_status",
 }
 {
-	"_comment": "add request return.",
+	"_comment": "request return.",
 	"req": "network_status",
 	"status": "online/offline",
 	"error":""
