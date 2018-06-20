@@ -40,7 +40,8 @@
 		<div class="form" id="input-fields-net" hidden>
 			<input class="input" type="text" id="ssid-net" name="ssid" placeholder="SSID"><p/>
 			<input class="input" type="password" id="password-net" name="Password" placeholder="Password"><p/>
-			<div class="checkbox2"><input type="checkbox" id="plus-net-pass" onclick="showPass(this,'password-net')"> show password </div>
+			<input type="checkbox" id="plus-net-pass" onclick="showPass(this,'password-net')">
+			<label class="checkbox-label" for="plus-net-pass"> Show password </label>
 			<div class="error-message" id="error-net" hidden></div>
 			<button class="submit_button" onclick="save_net()">Submit</button>
 		</div>
@@ -50,12 +51,12 @@
 		<div class="form" id="input-fields-ap" hidden>
 			<input class="input" type="text" id="ssid-ap" name="ssid" placeholder="SSID"><p/>
 			<input class="input" type="password" id="password-ap" name="Password" placeholder="Password"><p/>
-			<div class="checkbox2"><input type="checkbox" id="plus-ap-pass"onclick="showPass(this,'password-ap')"> show password </div>
+			<input type="checkbox" id="plus-ap-pass"onclick="showPass(this,'password-ap')">
+			<label class="checkbox-label" for="plus-ap-pass"> Show password </label>
 			<div class="error-message" id="error-ap" hidden></div>
 			<button class="submit_button" onclick="save_ap()">Submit</button>
 		</div>
 	</div>
-	
 	<script src="js/functions.js"></script>
   </body>
 </html>

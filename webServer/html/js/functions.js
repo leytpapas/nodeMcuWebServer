@@ -13,9 +13,12 @@
     var inSSID_net = document.getElementById('ssid-net');
     var inPASS_net = document.getElementById('password-net');
 
+    /*
+    Init = addListeners, get status of checkbox
+    */
     function initApp(){
-        
-        document.querySelectorAll("input.net").forEach(function(elem){ //add listener to all <input class="net">
+        //add listener to all <input class="net">
+        document.querySelectorAll("input.net").forEach(function(elem){ 
             elem.addEventListener('keypress',function(e){
                 var key = e.which || e.keyCode;
                 if (key === 13) { // 13 is enter
@@ -23,7 +26,8 @@
                 }
             });
         });
-        document.querySelectorAll("input.ap").forEach(function(elem){ //add listener to all <input class="ap">
+        //add listener to all <input class="ap">
+        document.querySelectorAll("input.ap").forEach(function(elem){ 
             elem.addEventListener('keypress',function(e){
                 var key = e.which || e.keyCode;
                 if (key === 13) { // 13 is enter
@@ -32,26 +36,9 @@
             });
         });
         
-        
         var data = {
-            "req": "network_status"
+            "req": "check"
         };
-
-        httpGetAsync('POST', 'switch.json', data, function(err, res) {
-            if (err) {
-                console.log('Received error');
-            } else {
-                console.log('Received +' + JSON.stringify(res)+'+');
-                var ans =JSON.parse(JSON.stringify(res));
-
-                if (new String(ans.status) == "online") {
-                   
-                } else {
-                    checkbox.checked = false;
-                }
-            }
-        });
-        data.req = "check";
         httpGetAsync('POST', 'switch.json', data, function(err, res) {
             if (err) {
                 console.log('Received error');
@@ -66,9 +53,10 @@
                 }
             }
         });
-        //checkbox.focus();
     }
-
+    /*
+    Submitting form for access point settings to server
+    */
     function save_ap(){
         var boole = false;
         var message = ""
@@ -111,7 +99,9 @@
             }
         });
     }
-
+    /*
+    Submitting form for network to server
+    */
     function save_net(){
         var boole = false;
         if(inSSID_net.value==""){
@@ -141,12 +131,20 @@
             }
         });
     }
-
+	/*
+	Make characters for password <input> in/visible
+	*/
     function showPass(checkboxEl,passwordEl){
         document.getElementById(passwordEl).type =(checkboxEl.checked)?"text":"password";
     }
+    /*
+    Depending on the state of 'button'
+    either unhide its form and hide 'otherbutton'
+    or hide its form and show 'otherbutton'
+    */
     function toggle(button,otherbutton,wrapper){
         document.getElementById(wrapper).hidden =! document.getElementById(wrapper).hidden;
+        //button.textContent = (button.textContent=="+")?"-":"+";
         if(button.textContent=="+"){
             button.textContent = "-";
             document.getElementById(otherbutton).hidden = true;
@@ -154,9 +152,10 @@
             button.textContent ="+";
             document.getElementById(otherbutton).hidden = false;
         }
-        //button.textContent = (button.textContent=="+")?"-":"+";
     }
-
+    /*
+    Send request to the server in order to change the state of the button
+    */
     function switchState() {
         var data = {
             "req": "trigger",
@@ -178,9 +177,9 @@
             }
         });
     }
-
-
-
+    /*
+    Send async json request using desired method
+    */
     function httpGetAsync(method, theUrl, data, callback) {
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.onreadystatechange = function() {

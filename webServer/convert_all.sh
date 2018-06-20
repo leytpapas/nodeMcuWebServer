@@ -6,6 +6,8 @@
 #
 # @Author Erick B. Tedeschi < erickbt86 [at] gmail [dot] com >
 #
+# (Modified it)- Added ascii2hexCstyle function for minifying files for offline use
+# @Author Lefteris Papadomanolakis < leytpapas [at] gmail [dot] com >
 
 outputfile="$(dirname "$(pwd)")/progMEMData.h"
 
