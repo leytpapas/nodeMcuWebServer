@@ -6,7 +6,8 @@
 #include <ArduinoJson.h>
 
 
-#define TIMEOUT 40
+#define TIMEOUT 40 //secs
+//#define STATICIP
 
 int relay = D4;
 
@@ -14,10 +15,9 @@ const char* nodeHostname = "Switch Node";
 /*const char* ssid = "Node";
 const char* password = "";*/
 
-boolean state = false;
+boolean state = false; //state of switch
 ESP8266WebServer server(80);
 
-//#define STATICIP
 #ifdef STATICIP
 IPAddress ip(192, 168, 1, 250); //Requested static IP address for the ESP
 IPAddress router(192, 168, 1, 1); // IP address for the Wifi router
@@ -26,13 +26,12 @@ IPAddress dns(192, 168, 1, 250);
 #endif
 
 IPAddress  apGateway(192,168,3,1);
-IPAddress  apIP(192,168,3,4);
+IPAddress  apIP(192,168,3,4); //Ip address as an AP
 IPAddress  apNetmask(255, 255, 255, 0);
 
 void loadIndexHTML() {
     sendFile (200 , "text/html", data_indexHTML, sizeof(data_indexHTML));
 }
-
 void loadFunctionsJS() {
     sendFile(200, "application/javascript", data_js_functionsJS, sizeof(data_js_functionsJS));
 }
@@ -41,7 +40,6 @@ void loadStyle() {
 }
 
 void switchJS() {
-
     StaticJsonBuffer<200> newBuffer;
     JsonObject& root = newBuffer.parseObject(server.arg("plain"));
     Serial.println(server.arg("plain"));
@@ -127,8 +125,8 @@ String getContentType(String filename) {
 void setup() {
     pinMode(relay, OUTPUT);
     digitalWrite(relay, LOW);
-    delay(5000);
     Serial.begin(115200);
+
     WiFi.hostname(nodeHostname);
     Serial.println("Opening SPIFFS.");
     bool result = SPIFFS.begin();
@@ -183,7 +181,7 @@ void setup() {
     // Print the IP address
     Serial.println(WiFi.localIP());
     digitalWrite(relay, HIGH);
-
+    
 }
 
 void accessPoint() {
@@ -236,10 +234,10 @@ bool connectTo(String ssid,String password) {
     WiFi.mode(WIFI_STA);
     // Connect to WiFi network
 
-#ifdef STATICIP
+	#ifdef STATICIP
     WiFi.config(ip, router, netmask);
     Serial.println("Got static");
-#endif
+	#endif
 
     WiFi.begin((const char*)ssid.c_str(),(const char*) password.c_str());
 
