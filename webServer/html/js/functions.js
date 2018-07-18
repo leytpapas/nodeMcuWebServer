@@ -5,6 +5,12 @@
         }
     };
 
+    //**Reload page/tab on focus** or Better get status of switch
+    window.onfocus = function() {
+        //window.location.reload(true);
+        getSwitchStatus();
+    };
+
     var checkbox = document.getElementById('switchin');
     var plus_ap = document.getElementById('plus-ap');
     var plus_net = document.getElementById('plus-net');
@@ -35,8 +41,13 @@
                 }
             });
         });
-        
-        var data = {
+
+        getSwitchStatus();
+    }
+    /*
+    Get status of switch
+    */
+    function getSwitchStatus(){var data = {
             "req": "check"
         };
         httpGetAsync('POST', 'switch.json', data, function(err, res) {
@@ -199,3 +210,4 @@
         xmlHttp.setRequestHeader('Content-type', 'application/json');
         xmlHttp.send(JSON.stringify(data));
     }
+
